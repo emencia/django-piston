@@ -76,7 +76,14 @@ class rc_factory(object):
                     is_string = True
                 self._base_content_is_iter = not is_string
 
-            content = property(HttpResponse._get_content, _set_content)            
+            try:
+                # Django 1.4
+                content = property(HttpResponse._get_content, _set_content)
+            except AttributeError:
+                # Django 1.5
+                @HttpResponse.content.setter
+                def content(self, content):
+                    self._set_content(content)
 
         return HttpResponseWrapper(r, content_type='text/plain', status=c)
     
