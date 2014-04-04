@@ -277,7 +277,7 @@ class Emitter(object):
             # resouce uri
             if self.in_typemapper(type(data), self.anonymous):
                 handler = self.in_typemapper(type(data), self.anonymous)
-                if hasattr(handler, 'resource_uri'):
+                if hasattr(handler, 'resource_uri') and ('resource_uri' in get_fields):
                     url_id, fields = handler.resource_uri(data)
 
                     try:
