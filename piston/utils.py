@@ -74,10 +74,7 @@ class rc_factory(object):
                 else:
                     self._container = [content]
                     is_string = True
-                if django.VERSION >= (1, 4):
-                    self._base_content_is_iter = not is_string
-                else:
-                    self._is_string = is_string
+                self._base_content_is_iter = not is_string
 
             content = property(HttpResponse._get_content, _set_content)            
 

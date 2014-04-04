@@ -101,7 +101,7 @@ class CustomResponseWithStatusCodeTest(TestCase):
          response = resource(request, emitter_format='json')
 
          self.assertEquals(201, response.status_code)
-         is_string = (not response._base_content_is_iter) if django.VERSION >= (1,4) else response._is_string
+         is_string = (not response._base_content_is_iter)
          self.assert_(is_string, "Expected response content to be a string")
 
          # compare the original data dict with the json response 
